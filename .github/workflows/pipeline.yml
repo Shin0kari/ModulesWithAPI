@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run golangci-lint
-        uses: reviewdog/action-golangci-lint
+        uses: reviewdog/action-golangci-lint@v2
 
   deploy:
     name: Deploy-on-Heroku
