@@ -9,7 +9,7 @@ import (
 	"workshop/internal/api"
 )
 
-const getJokePath = "/api?format=json"
+const getJokePath = "https://geek-jokes.sameerkumar.website/api?format=json"
 
 // JokeClient is a joke Api client
 type JokeClient struct {

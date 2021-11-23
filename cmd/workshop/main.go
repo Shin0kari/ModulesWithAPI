@@ -7,6 +7,7 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/ilyakaznacheev/cleanenv"
 
+	"workshop/internal/api/jokes"
 	"workshop/internal/config"
 	"workshop/internal/handler"
 )
@@ -18,7 +19,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	h := handler.NewHandler()
+	apiClient := jokes.NewJokeClient(cfg.JokeURL)
+
+	h := handler.NewHandler(apiClient)
 
 	r := chi.NewRouter()
 
@@ -29,5 +32,6 @@ func main() {
 	log.Printf("starting server at %s", path)
 	err = http.ListenAndServe(path, r)
 	log.Fatal(err)
+
 	log.Print("shutting server down")
 }
