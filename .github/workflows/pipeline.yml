@@ -13,11 +13,20 @@ jobs:
       - name: Run golangci-lint
         uses: reviewdog/action-golangci-lint@v2
 
+  test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v1
+      with:
+        gp-version: 1.17
+
   deploy:
     name: Deploy-on-Heroku
     runs-on: ubuntu-latest
     needs: 
       - lint
+      - test
     steps:
       - uses: actions/checkout@v2
       - name: Login-to-Heroku-Container-registry
